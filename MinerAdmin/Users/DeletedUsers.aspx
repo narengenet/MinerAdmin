@@ -1,66 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Panel.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="MinerAdmin.Dashboard" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Panel.Master" AutoEventWireup="true" CodeBehind="DeletedUsers.aspx.cs" Inherits="MinerAdmin.Users.DeletedUsers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="row">
-        <div class="col-xl-4 col-sm-4 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dash-widget-header">
-                        <span class="dash-widget-icon bg-primary">
-                            <i class="fe fe-users"></i>
-                        </span>
-                        <div class="dash-count">
-                            <a href="#" class="count-title">User Count</a>
-                            <a href="#" class="count">
-                                <asp:Label ID="lblUserCount" runat="server" Text=""></asp:Label></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-sm-4 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dash-widget-header">
-                        <span class="dash-widget-icon bg-warning">
-                            <i class="fe fe-arrow-down"></i>
-                        </span>
-                        <div class="dash-count">
-                            <a href="<%= ResolveUrl("~/Users/Deposits?pending=true") %>" class="count-title">Pending Deposits</a>
-                            <a href="<%= ResolveUrl("~/Users/Deposits?pending=true") %>" class="count">
-                                <asp:Label ID="lblPendingDeposits" runat="server" Text=""></asp:Label>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-sm-4 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dash-widget-header">
-                        <span class="dash-widget-icon bg-danger">
-                            <i class="fe fe-arrow-up"></i>
-                        </span>
-                        <div class="dash-count">
-                            <a href="<%= ResolveUrl("~/Users/Withdraws?pending=true") %>" class="count-title">Pending Withdraws</a>
-                            <a href="<%= ResolveUrl("~/Users/Withdraws?pending=true") %>" class="count">
-                                <asp:Label ID="lblPendingWithdraws" runat="server" Text=""></asp:Label>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12 d-flex">
 
             <div class="card flex-fill">
                 <div class="card-header">
-                    <h4 class="card-title float-start">User List</h4>
+                    <h4 class="card-title float-start">Deleted User List</h4>
                     <div class="table-search float-end">
                         <input type="text" class="form-control" placeholder="Search">
                         <button class="btn" type="submit"><i class="fa fa-search"></i></button>
@@ -122,9 +68,4 @@
 
         </div>
     </div>
-
-
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:minerappConnectionString %>" SelectCommand="SELECT * FROM [Users] ORDER BY [Created] DESC"></asp:SqlDataSource>
 </asp:Content>
-
-

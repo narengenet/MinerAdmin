@@ -78,6 +78,33 @@ namespace MinerAdmin.Users
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblInviterUsername;
 
         /// <summary>
+        /// hplUserLoginHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplUserLoginHistory;
+
+        /// <summary>
+        /// hplUserDepositHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplUserDepositHistory;
+
+        /// <summary>
+        /// hplUserWithdrawHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplUserWithdrawHistory;
+
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>

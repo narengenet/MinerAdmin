@@ -9,6 +9,8 @@ namespace MinerAdmin
 {
     public partial class Panel : System.Web.UI.MasterPage
     {
+        public static string ActivePage = "";
+        public static string ActiveSub = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 

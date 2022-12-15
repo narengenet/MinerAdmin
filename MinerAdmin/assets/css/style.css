@@ -4641,3 +4641,10 @@ table .actions .btn {
 span.form-check-input {
     border: none;
 }
+
+td.theWallet:before{
+    margin-right:0.5rem;
+}
+td.theWallet{
+    cursor:pointer;
+}

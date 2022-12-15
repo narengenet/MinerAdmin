@@ -22,6 +22,81 @@
     <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 </head>
 <body>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close" data-original-title="" title=""><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-bs-dismiss="modal" data-original-title="" title="">No</button>
+                    <button class="btn btn-secondary" type="button" data-original-title="" onclick="confirmExampleModal();" title="">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleInputModal" tabindex="-1" role="dialog" aria-labelledby="exampleInputModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleInputModalLabel">Modal title</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close" data-original-title="" title=""><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-form-label modal-input-label" for="modal-input-name"></label>
+                        <input class="form-control" id="exampleInputModalValue" type="text" value="" data-original-title="" title="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" data-original-title="" title="">No</button>
+                    <button class="btn btn-primary" type="button" data-original-title="" onclick="confirmExampleInputModal();" title="">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="exampleModalfat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">New message</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close" data-original-title="" title=""><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="col-form-label" for="recipient-name">Recipient:</label>
+                            <input class="form-control" type="text" value="@fat" data-original-title="" title="">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="message-text">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" data-original-title="" title="">Close</button>
+                    <button class="btn btn-primary" type="button" data-original-title="" title="">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
     <form runat="server">
         <div class="main-wrapper">
 
@@ -159,19 +234,25 @@
                             <li class="active">
                                 <a href="<%= ResolveUrl("~/Users/Dashboard") %>"><i class="fe fe-home"></i><span>Dashboard</span></a>
                             </li>
-                            <li class="submenu">
+                            <li id="users" class="submenu">
                                 <a href="#"><i class="fe fe-users"></i><span>Users</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li><a href="users.html">Users</a></li>
-                                    <li><a href="blocked-users.html">Blocked User</a></li>
-                                    <li><a href="report-users.html">Report User</a></li>
+                                    <li id="allusers"><a href="<%= ResolveUrl("~/Users/AllUsers") %>">Users</a></li>
+                                    <li id="deletedusers"><a href="<%= ResolveUrl("~/Users/DeletedUsers") %>">Deleted Users</a></li>
                                 </ul>
                             </li>
-                            <li class="submenu">
+                            <li id="history" class="submenu">
                                 <a href="#"><i class="fe fe-sync"></i><span>History </span><span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li><a href="call-history.html">Call History </a></li>
+                                    <li id="loginhistory"><a href="<%= ResolveUrl("~/Users/LoginHistory") %>">Login History</a></li>
                                     <li><a href="group-history.html">Group History </a></li>
+                                </ul>
+                            </li>
+                            <li id="transactions" class="submenu">
+                                <a href="#"><i class="fe fe-cart"></i><span>Transactions </span><span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li id="deposits"><a href="<%= ResolveUrl("~/Users/Deposits") %>">Deposits</a></li>
+                                    <li id="withdraws"><a href="<%= ResolveUrl("~/Users/Withdraws") %>">Withdraws</a></li>
                                 </ul>
                             </li>
                             <li class="submenu">
@@ -254,6 +335,39 @@
     <script src="<%= ResolveUrl("~/assets/plugins/datatables/jquery.dataTables.min.js") %>"></script>
     <script src="<%= ResolveUrl("~/assets/plugins/datatables/datatables.min.js") %>"></script>
     <script src="<%= ResolveUrl("~/assets/js/script.js") %>"></script>
+
+    <script>
+        var ActiveSub = '<%= ActiveSub %>';
+        var ActivePage = '<%= ActivePage %>';
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            if (ActiveSub != "") {
+                $('.active').removeClass('active');
+                $('.subdrop').removeClass('subdrop');
+                $("#" + ActiveSub + " a").addClass('subdrop');
+                $("#" + ActiveSub + " ul").css('display', 'block');
+                $("#" + ActivePage).addClass('active');
+
+            }
+
+
+        });
+
+
+        function copyToClipboard(theText) {
+            navigator.clipboard
+                .writeText(theText)
+                .then(() => {
+                    alert("Copied.");
+                })
+                .catch(() => {
+                    alert("Failed!");
+                });
+
+
+        }
+    </script>
 
 </body>
 </html>

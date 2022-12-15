@@ -47,8 +47,19 @@
 
                     </div>
                     <div class="profile-list">
-                        <a href="group-history.html">
-                            <button type="button" class="btn btn-block btn-outline-light">View History</button></a>
+                        <asp:HyperLink ID="hplUserLoginHistory" runat="server">
+                            <button type="button" class="btn btn-block btn-outline-light">View Login History</button>
+                        </asp:HyperLink>
+                    </div>
+                    <div class="profile-list">
+                        <asp:HyperLink ID="hplUserDepositHistory" runat="server">
+                            <button type="button" class="btn btn-block btn-outline-light">View Deposit History</button>
+                        </asp:HyperLink>
+                    </div>
+                    <div class="profile-list">
+                        <asp:HyperLink ID="hplUserWithdrawHistory" runat="server">
+                            <button type="button" class="btn btn-block btn-outline-light">View Withdraw History</button>
+                        </asp:HyperLink>
                     </div>
                 </div>
             </div>

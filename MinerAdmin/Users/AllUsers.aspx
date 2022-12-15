@@ -1,60 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Panel.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="MinerAdmin.Dashboard" %>
-
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Panel.Master" AutoEventWireup="true" CodeBehind="AllUsers.aspx.cs" Inherits="MinerAdmin.Users.AllUsers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="row">
-        <div class="col-xl-4 col-sm-4 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dash-widget-header">
-                        <span class="dash-widget-icon bg-primary">
-                            <i class="fe fe-users"></i>
-                        </span>
-                        <div class="dash-count">
-                            <a href="#" class="count-title">User Count</a>
-                            <a href="#" class="count">
-                                <asp:Label ID="lblUserCount" runat="server" Text=""></asp:Label></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-sm-4 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dash-widget-header">
-                        <span class="dash-widget-icon bg-warning">
-                            <i class="fe fe-arrow-down"></i>
-                        </span>
-                        <div class="dash-count">
-                            <a href="<%= ResolveUrl("~/Users/Deposits?pending=true") %>" class="count-title">Pending Deposits</a>
-                            <a href="<%= ResolveUrl("~/Users/Deposits?pending=true") %>" class="count">
-                                <asp:Label ID="lblPendingDeposits" runat="server" Text=""></asp:Label>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-sm-4 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="dash-widget-header">
-                        <span class="dash-widget-icon bg-danger">
-                            <i class="fe fe-arrow-up"></i>
-                        </span>
-                        <div class="dash-count">
-                            <a href="<%= ResolveUrl("~/Users/Withdraws?pending=true") %>" class="count-title">Pending Withdraws</a>
-                            <a href="<%= ResolveUrl("~/Users/Withdraws?pending=true") %>" class="count">
-                                <asp:Label ID="lblPendingWithdraws" runat="server" Text=""></asp:Label>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12 d-flex">
 
@@ -78,8 +23,9 @@
                                             <th>Full Name</th>
                                             <th class="text-center">Cellphone</th>
                                             <th class="text-center">Email</th>
-                                            <th class="text-end">Status</th>
-                                            <th class="text-end">Action</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Registered</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -97,6 +43,7 @@
                                     <td class="text-end">
                                         <div class='font-weight-600 text-<%# Eval("IsActivated").ToString() == "True" ? "success" : "danger" %> '><%# Eval("IsActivated").ToString() == "True" ? "Active" : "InActive" %></div>
                                     </td>
+                                    <td class="text-center"><%# Eval("Created") %></td>
                                     <td class="text-end">
                                         <div class="actions">
                                             <a href='/Users/UserDetails?userid=<%# Eval("Id") %>' class="btn btn-sm bg-success-light me-2">
@@ -122,9 +69,4 @@
 
         </div>
     </div>
-
-
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:minerappConnectionString %>" SelectCommand="SELECT * FROM [Users] ORDER BY [Created] DESC"></asp:SqlDataSource>
 </asp:Content>
-
-

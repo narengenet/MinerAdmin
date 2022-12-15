@@ -91,6 +91,10 @@ namespace MinerAdmin.Users
 
                     chkDeleted.Checked = dr.IsDeleted;
 
+                    hplUserLoginHistory.NavigateUrl = "/Users/LoginHistory?userid=" + dr.Id.ToString();
+                    hplUserDepositHistory.NavigateUrl = "/Users/Deposits?userid=" + dr.Id.ToString();
+                    hplUserWithdrawHistory.NavigateUrl = "/Users/Withdraws?userid=" + dr.Id.ToString();
+
 
 
 

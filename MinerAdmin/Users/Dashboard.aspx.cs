@@ -11,11 +11,20 @@ namespace MinerAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Panel.ActivePage = "";
+            Panel.ActiveSub = "";
+
+
             MoneroDataSetTableAdapters.UsersTableAdapter users=new MoneroDataSetTableAdapters.UsersTableAdapter();
-            MoneroDataSet.UsersDataTable dt = users.GetData();
+            MoneroDataSet.UsersDataTable dt = users.GetNotDeletedUsers();
             Repeater1.DataSource = dt.OrderBy(u=>u.Name);
             Repeater1.DataBind();
             lblUserCount.Text = dt.Rows.Count.ToString();
+
+            MoneroDataSetTableAdapters.TransactionsTableAdapter transTA = new MoneroDataSetTableAdapters.TransactionsTableAdapter();
+            MoneroDataSet.TransactionsDataTable transacDT=transTA.GetData();
+            lblPendingDeposits.Text = transacDT.Where(t => t.IsDeposit == true && t.Confirmed == false).Count().ToString();
+            lblPendingWithdraws.Text = transacDT.Where(t => t.IsDeposit == false && t.Confirmed == false).Count().ToString();
 
             
         }
